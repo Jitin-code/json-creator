@@ -1,3 +1,9 @@
+
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -335,12 +341,41 @@ strSave=strSave+"\t\t\t{ \n\t\t\t\t\"question\"" + ": "+ "\""+ques + "\",\n" +
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
                 System.out.println("Action performed Syetem printed");
-                
-
-
-
-                  
+                          
     	System.out.println(strSave);
+        
+        File file = new File("questions.json");
+  
+            try {
+                //Create the file
+                if (file.createNewFile())
+                {
+                    System.out.println("File is created!");
+                } else {
+                    System.out.println("File already exists.");
+                }           } catch (IOException ex) {
+                Logger.getLogger(JsonCreator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+ 
+    //Write Content
+    FileWriter writer = null;
+            try {
+                writer = new FileWriter(file);
+            } catch (IOException ex) {
+                Logger.getLogger(JsonCreator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                writer.write(strSave);
+            } catch (IOException ex) {
+                Logger.getLogger(JsonCreator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                writer.close();
+            } catch (IOException ex) {
+                Logger.getLogger(JsonCreator.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
